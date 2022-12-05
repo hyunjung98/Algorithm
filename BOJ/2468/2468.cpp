@@ -18,7 +18,7 @@ int dy[4] = { 0, 0, -1, 1 };
 int N;
 int maxHeight = -1;     // 최대 높이 초기화
 
-vector<int> vecArea;
+vector<int> vecArea;    // 각 높이에 대한 영역의 수 저장
 
 void Dfs(int x, int y, int h)
 {
