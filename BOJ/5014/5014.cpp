@@ -1,20 +1,68 @@
-﻿// 5014.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
-//
+﻿#include <iostream>
+#include <queue>
+#include <cstring>
+#include <vector>
 
-#include <iostream>
+using namespace std;
+
+#define MAX 1000001
+#define _X first
+#define _Y second
+
+int visited[MAX];
+
+int F;		// 꼭대기 층
+int S;		// 강호가 있는 층
+int G;		// 이동하려는 층
+int U, D;	// 위로 몇 층? 아래로 몇 층?
+
+queue<int> q;
+
+void Bfs()
+{
+	q.push(S);
+	visited[S] = 0;
+
+	while (!q.empty())
+	{
+		int cur = q.front();
+		q.pop();
+		
+		// 도착했으면 이동횟수 출력
+		if (cur == G)
+		{
+			cout << visited[cur];
+			return;
+		}
+
+		for (int i = 0; i < 2; i++)
+		{
+			// 아래, 위 방향 벡터
+			int dir[2] = { -D, U };
+			int next = cur + dir[i];
+
+			// 1층 미만/최상층 이상, 방문한 곳이라면 무시한다.
+			if (next <= 0 || next > F || visited[next] != -1) continue; 
+			// 이동 횟수를 증가시켜 값을 저장시킨다.
+			visited[next] = visited[cur] + 1;
+			q.push(next);
+		}
+	}
+	// 이동하려는 층에 도달하지 못했을 경우 출력된다.
+	cout << "use the stairs";
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	ios::sync_with_stdio(false);
+	cin.tie(0); cout.tie(0);
+
+	cin >> F >> S >> G >> U >> D;
+	
+	// 방문 처리를 위해 전부 -1로 초기화한다.
+	memset(visited, -1, sizeof(visited));
+
+	Bfs();
+
+	return 0;
 }
-
-// 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
-// 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
-
-// 시작을 위한 팁: 
-//   1. [솔루션 탐색기] 창을 사용하여 파일을 추가/관리합니다.
-//   2. [팀 탐색기] 창을 사용하여 소스 제어에 연결합니다.
-//   3. [출력] 창을 사용하여 빌드 출력 및 기타 메시지를 확인합니다.
-//   4. [오류 목록] 창을 사용하여 오류를 봅니다.
-//   5. [프로젝트] > [새 항목 추가]로 이동하여 새 코드 파일을 만들거나, [프로젝트] > [기존 항목 추가]로 이동하여 기존 코드 파일을 프로젝트에 추가합니다.
-//   6. 나중에 이 프로젝트를 다시 열려면 [파일] > [열기] > [프로젝트]로 이동하고 .sln 파일을 선택합니다.
