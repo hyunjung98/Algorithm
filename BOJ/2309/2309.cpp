@@ -28,7 +28,9 @@ int main()
 						continue;
 					cout << arr[k] << endl;
 				}
+				return 0;
 			}
 		}
 	}
+	return 0;
 }
