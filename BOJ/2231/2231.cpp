@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int N, decompos, digits;
+int N;
 
 int main()
 {
