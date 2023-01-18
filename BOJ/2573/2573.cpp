@@ -19,19 +19,6 @@ bool isSeparated = false;
 
 queue<pair<int, int>> q;
 
-void p()
-{
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < M; j++)
-		{
-			cout << map[i][j] << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
-}
-
 void Bfs()
 {
 	while (!q.empty())
